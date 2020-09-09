@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5846898100171084613}
   - component: {fileID: 6771302852262283948}
   - component: {fileID: 337677730557527920}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 6708718037559648815}
   - component: {fileID: 4814390526989901465}
   - component: {fileID: 4546112566660840028}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,13 +171,14 @@ GameObject:
   - component: {fileID: 7214553506045999721}
   - component: {fileID: 7214553506045999720}
   - component: {fileID: 8652458783444381023}
-  - component: {fileID: 8720556298536640934}
+  - component: {fileID: -7291234340050233231}
   - component: {fileID: 5142428042791146406}
   - component: {fileID: 2757978848906677899}
   - component: {fileID: -318466915848741482}
-  m_Layer: 0
+  - component: {fileID: 8087344517518849324}
+  m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -251,7 +252,7 @@ MonoBehaviour:
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
   target: {fileID: 1869895855740187608}
---- !u!114 &8720556298536640934
+--- !u!114 &-7291234340050233231
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -307,8 +308,8 @@ MonoBehaviour:
       m_RotationOrder: 4
     CurrentTargetSpeed: 8
   mouseLook:
-    XSensitivity: 0.1
-    YSensitivity: 0.1
+    XSensitivity: 0.5
+    YSensitivity: 0.5
     clampVerticalRotation: 1
     MinimumX: -90
     MaximumX: 90
@@ -321,7 +322,6 @@ MonoBehaviour:
     slowDownRate: 20
     airControl: 1
     shellOffset: 0
-  player: {fileID: 0}
 --- !u!54 &5142428042791146406
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -364,6 +364,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04bb7dbc52430164fb2fba18a913aea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  weapon:
+    name: Glock
+    damage: 10
+    range: 100
+  cam: {fileID: 5994942825731752789}
+  mask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &8087344517518849324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7214553506045999717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05e30e278001a6247863db24c18c36d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  remoteLayerName: RemotePlayer
 --- !u!1 &7432461817033169282
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +399,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3108599114327969964}
   - component: {fileID: 7687904681972489934}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,7 +443,7 @@ GameObject:
   - component: {fileID: 1869895855740187608}
   - component: {fileID: 4331256049420708133}
   - component: {fileID: 5994942825731752789}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}

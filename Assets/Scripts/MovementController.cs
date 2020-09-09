@@ -8,7 +8,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
-public class Player : NetworkBehaviour
+public class MovementController : NetworkBehaviour
 {
     private CinemachineVirtualCamera virtualCamera;
 
@@ -35,7 +35,7 @@ public class Player : NetworkBehaviour
 
         Controls.Player.Aim.performed += ctx => Look(ctx.ReadValue<Vector2>());
         Controls.Player.Aim.canceled += ctx => ResetLook();
-        Controls.Player.Shoot.performed += ctx => Jump();
+        Controls.Player.Jump.performed += ctx => Jump();
         Controls.Player.Movement.performed += ctx => Move(ctx.ReadValue<Vector2>());
         Controls.Player.Movement.canceled += ctx => ResetMovement();
     }
@@ -59,37 +59,34 @@ public class Player : NetworkBehaviour
     }
 
     [Client]
-    private void Look(Vector2 lookAxis)
+    public void Look(Vector2 lookAxis)
     {
         m_LookAxis = lookAxis;
     }
 
     [Client]
-    private void ResetLook()
+    public void ResetLook()
     {
         m_LookAxis = Vector2.zero;
     }
 
     [Client]
-    private void Move(Vector2 direction)
+    public void Move(Vector2 direction)
     {
-        Debug.Log("Player wants to move: " + direction);
-
         m_xMovement = direction.x;
         m_yMovement = direction.y;
     }
 
     [Client]
-    private void ResetMovement()
+    public void ResetMovement()
     {
         m_xMovement = Vector2.zero.x;
         m_yMovement = Vector2.zero.y;
     }
 
     [Client]
-    void Jump()
+    public void Jump()
     {
-        Debug.Log("We shot the Sheriff.");
         m_Jump = true;
     }
 
@@ -169,7 +166,6 @@ public class Player : NetworkBehaviour
     public MovementSettings movementSettings = new MovementSettings();
     public MouseLook mouseLook = new MouseLook();
     public AdvancedSettings advancedSettings = new AdvancedSettings();
-    public GameObject player;
 
     private Rigidbody m_RigidBody;
     private CapsuleCollider m_Capsule;
@@ -208,7 +204,7 @@ public class Player : NetworkBehaviour
         }
     }
 
-    
+
     private void Update()
     {
         if (!hasAuthority) { return; }
@@ -216,10 +212,10 @@ public class Player : NetworkBehaviour
         RotateView();
     }
 
-    
+
     private void FixedUpdate()
     {
-        if(!hasAuthority) { return; }
+        if (!hasAuthority) { return; }
 
         GroundCheck();
         Vector2 input = GetInput();

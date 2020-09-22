@@ -26,6 +26,8 @@ public class PlayerShoot : NetworkBehaviour
 
     public override void OnStartAuthority()
     {
+        base.OnStartAuthority();
+
         if (cam == null)
         {
             Debug.LogError("PlayerShoot: No camera referenced.");
@@ -57,14 +59,17 @@ public class PlayerShoot : NetworkBehaviour
         {
             if (hit.collider.tag == PLAYER_TAG)
             {
-                CmdPlayerShot(hit.collider.name);
+                CmdPlayerShot(hit.collider.name, weapon.damage);
             }
         }
     }
 
     [Command]
-    private void CmdPlayerShot(string playerID)
+    private void CmdPlayerShot(string playerID, int damage)
     {
         Debug.Log(playerID + " has been shot!");
+
+        PlayerManager player = GameManager.GetPlayer(playerID);
+        player.TakeDamage(damage);
     }
 }

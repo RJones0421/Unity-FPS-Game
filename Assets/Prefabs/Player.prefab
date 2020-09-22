@@ -176,6 +176,7 @@ GameObject:
   - component: {fileID: 2757978848906677899}
   - component: {fileID: -318466915848741482}
   - component: {fileID: 8087344517518849324}
+  - component: {fileID: -5447969652602779156}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -389,6 +390,18 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   remoteLayerName: RemotePlayer
+--- !u!114 &-5447969652602779156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7214553506045999717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 839276d7f719947429fcd4524bc66c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7432461817033169282
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,6 +24,8 @@ public class MovementController : NetworkBehaviour
 
     public override void OnStartAuthority()
     {
+        base.OnStartAuthority();
+
         enabled = true;
 
         virtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();

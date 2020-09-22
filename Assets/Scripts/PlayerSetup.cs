@@ -1,6 +1,7 @@
 ﻿using Mirror;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerManager))]
 public class PlayerSetup : NetworkBehaviour
 {
     [SerializeField] string remoteLayerName = "RemotePlayer";
@@ -11,19 +12,26 @@ public class PlayerSetup : NetworkBehaviour
         {
             AssignRemoteLayer();
         }
-
-        RegisterPlayer();
     }
 
-    private void RegisterPlayer()
+    public override void OnStartClient()
     {
-        string playerID = "Player " + GetComponent<NetworkIdentity>().netId.ToString();
-        transform.name = playerID;
+        base.OnStartClient();
+
+        string netID = GetComponent<NetworkIdentity>().netId.ToString();
+        PlayerManager player = GetComponent<PlayerManager>();
+
+        GameManager.RegisterPlayer(netID, player);
     }
 
     [Client]
     private void AssignRemoteLayer()
     {
         gameObject.layer = LayerMask.NameToLayer(remoteLayerName);
+    }
+
+    private void OnDisable()
+    {
+        GameManager.UnRegisterPlayer(transform.name);
     }
 }
